@@ -82,10 +82,11 @@ For detailed API documentation, visit:
 
 ## Requirements
 
-- Swift 5.5+
+- Swift 5.7+
 - iOS 15.0+
-- macOS 11.0+
+- macOS 13.0+
 - watchOS 6.0+
+- tvOS 14.0+
 
 ## Contributing
 
