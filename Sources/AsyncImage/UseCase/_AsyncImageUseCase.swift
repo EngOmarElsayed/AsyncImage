@@ -14,10 +14,10 @@ struct _AsyncImageUseCase: Sendable {
 
 // MARK: - Fetch Method
 extension _AsyncImageUseCase {
-    func fetchImage(url: URL?, for cachingPolicy: CachingPolicy) async throws(AsyncImageError) -> Image {
-        guard let url = url else { throw .invilaedUrl(url) }
+    func fetchImage(url: URL?, for cachingPolicy: CachingPolicy) async throws -> Image {
+        guard let url = url else { throw AsyncImageError.invilaedUrl(url) }
         if let cachedImageData = checkCachedImageData(for: url), cachingPolicy != .withViewCycle {
-           guard let image = Image(data: cachedImageData) else { throw .invalidData(cachedImageData) }
+           guard let image = Image(data: cachedImageData) else { throw AsyncImageError.invalidData(cachedImageData) }
 
             return image
         } else {
@@ -32,7 +32,7 @@ extension _AsyncImageUseCase {
 
 // MARK: - Private Methods
 extension _AsyncImageUseCase {
-    private func getImageFrom(from url: URL?) async throws(AsyncImageError) -> Data {
+    private func getImageFrom(from url: URL?) async throws -> Data {
         return try await imageFetcher.fetchImage(at: url)
     }
 

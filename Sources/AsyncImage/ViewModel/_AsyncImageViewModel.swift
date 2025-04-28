@@ -21,7 +21,8 @@ extension _AsyncImageViewModel {
             let image = try await imageFetcher.fetchImage(url: url, for: cachingPolicy)
             imageLoadingCase = .success(image)
         } catch {
-            imageLoadingCase = .failure(error)
+            let asyncError = error as? AsyncImageError
+            imageLoadingCase = .failure(asyncError)
         }
     }
 }

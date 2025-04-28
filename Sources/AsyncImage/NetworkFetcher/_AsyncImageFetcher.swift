@@ -10,7 +10,7 @@ import Foundation
 struct _AsyncImageFetcher: Sendable {
     private let urlSession: URLSession = .shared
 
-    func fetchImage(at url: URL?) async throws(AsyncImageError) -> Data {
+    func fetchImage(at url: URL?) async throws -> Data {
         do {
             guard let url else { throw AsyncImageError.invilaedUrl(url) }
             let (data, reponse) = try await urlSession.data(from: url)
@@ -18,7 +18,7 @@ struct _AsyncImageFetcher: Sendable {
 
             return data
         } catch {
-            throw .urlSessionError(error)
+            throw AsyncImageError.urlSessionError(error)
         }
     }
 }

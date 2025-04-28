@@ -51,5 +51,5 @@ public enum AsyncImageLoadingCase {
     /// - Note: The loading state will transition to `.failure` if the URL is nil or invalid,
     ///   in addition to network errors, decoding errors, or other failures during the loading process.
     ///
-    case failure(AsyncImageError)
+    case failure(AsyncImageError?)
 }
